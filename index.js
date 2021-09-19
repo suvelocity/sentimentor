@@ -3,6 +3,9 @@ let text;
 
 async function buttonHandler () {
     try {
+        if (document.getElementById("image")) {
+            document.getElementById("image").remove();
+        }
         document.getElementById("output").classList = "";
         document.getElementById("type").innerText = "loading...";
             document.getElementById("polarity").innerText = "loading...";
@@ -23,12 +26,21 @@ async function buttonHandler () {
                 document.getElementById("type").innerText = "Something went wrong... ";
                 return;
             }
-
+            const image = document.createElement("img");
+            setAttributes(image, {id:"image", src: `https://http.cat/${almostAns.status}`, alt: "statuscat", height: "300px", width: "300px"});
+            document.body.append(image);
             document.getElementById("type").innerText = result.type;
             document.getElementById("polarity").innerText = result.polarity;
             document.getElementById("output").classList.add(result.type);
+            document.getElementById("output").classList.add("answer");
     }
     catch (error){
         document.getElementById("type").innerText = "Something went wrong . . . " + error;
+    }
+}
+
+function setAttributes (elm, attr) {
+    for (let key in attr) {
+        elm.setAttribute(key, attr[key]);
     }
 }
