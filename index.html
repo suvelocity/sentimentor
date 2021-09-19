@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scripts/sentimentor.js" defer></script> <!-- Load script after page load -->
+    <link rel="stylesheet" href="styles/style.css"> 
+    <title>Sentimentor >:O</title>
+</head>
+<body>
+    <div id="page">
+        <h1>Sentimentor</h1>
+        <div class="user-input">
+            <textarea class="text-area" placeholder="What do you think about gordon"></textarea>
+            <button>Submit!</button>
+        </div>
+        <div class="results-area">
+            <p>Sentiment: <img class = "loading" src="images\loading.gif" hidden><span class="sentiment"></span></p>
+            <p>Polarity: <img class = "loading" src="images\loading.gif" hidden><span class="polarity"></span></p>
+            <p style="display: grid;">HTTP Code<img class = "httpcode" src="https://bit.ly/2XwQxrz"></p>
+        </div>
+    </div>
+</body>
+</html>

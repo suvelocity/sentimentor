@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+}
+
+body{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* #page{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+} */
+
+.user-input, .results-area{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: auto;
+    width: 50%;
+}
+
+.text-area{
+    height: 10em;
+}
+
+.positive{
+    background-color: green;
+}
+
+.negative, .error{
+    background-color: red;
+}
+
+.neutral{
+    background-color: grey;
+}
+
+p{
+    width: fit-content;
+    margin: auto;
+    padding: 1em;
+}
+
+.loading{
+    height: 1em;
+}
+
+.httpcode{
+    height: 15em;
+}
