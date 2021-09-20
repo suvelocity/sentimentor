@@ -17,13 +17,12 @@ function hideLoading() {
     loader.classList.remove("display");
 }
 
+// send data to the api and display the response.
 async function hundleButtonClickEvent(event){
+    
     displayLoading()
 
-    const input = document.getElementById('submit');
-    console.log(input);
-    const val = input.value;
-    console.log(val);
+    const val = document.getElementById('submit').value;
 
     const object = { text: `${val}` };
     let response = await fetch("https://sentim-api.herokuapp.com/api/v1/",
@@ -35,6 +34,9 @@ async function hundleButtonClickEvent(event){
           'Accept': "application/json"
         }
     });
+
+    let element = document.getElementById('polarity');
+
     displayLoading();
     if (response.ok) { // if HTTP-status is 200-299
         // get the response body (the method explained below)
@@ -43,7 +45,6 @@ async function hundleButtonClickEvent(event){
         console.log(json);
         jsonObj = json['result'];
         console.log(jsonObj['polarity']);
-        let element = document.getElementById('polarity');
         element.textContent = jsonObj['type']+ ':' +jsonObj['polarity'];
         if(jsonObj['polarity'] > 0)
             element.classList = ['green'];
@@ -53,12 +54,15 @@ async function hundleButtonClickEvent(event){
             element.classList = ['grey'];
       } else {
         alert("HTTP-Error: " + response.status);
-
+        hideLoading();
+        element.textContent = 'ERROR Retreving Data'
       }
       document.getElementById('image').setAttribute('src',`https://http.cat/${response.status}.jpg`);
       document.getElementById('image').style.visibility = 'visible';
 }
 
+
+//bulid the DOM structure.
 function structure(){
     let main = document.createElement('div');
 
