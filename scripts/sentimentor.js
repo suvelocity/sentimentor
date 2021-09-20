@@ -74,6 +74,7 @@ async function getSentimentResponse(text){
         body: JSON.stringify(body) //Stringify obj 
     }).catch(function(error){
         console.log("Error " + error)
+        return {status: 400}
     });
     return response; // parses JSON response into native JavaScript objects
 }
