@@ -3,6 +3,9 @@ const submitButton = document.querySelector("button[button-id='1']");
 submitButton.addEventListener("click", handleSumbit);
 const checkAgainButton = document.querySelector("button[button-id='2']");
 checkAgainButton.addEventListener("click", handleCheckAgain);
+//Add secret checkbox
+const checkBoxElement = document.querySelector(".betterload-checkbox");
+checkBoxElement.addEventListener("click", handleSecretCheckboxClick);
 
 
 async function handleSumbit(event){
@@ -17,8 +20,8 @@ async function handleSumbit(event){
     
     //Add loading effect and Clear prev Results
     textArea.value = "";
-    sentimentElement.parentElement.className = "";
-    polarityElement.parentElement.className = "";
+    sentimentElement.className = sentimentElement.classList[0];
+    polarityElement.className = polarityElement.classList[0];
     sentimentElement.textContent = "";
     polarityElement.textContent = "";
     
@@ -35,11 +38,11 @@ async function handleSumbit(event){
     page.insertBefore(resultAreaElement, loadingElement);
     resultAreaElement.classList.remove('hide') //Show results
     
-    sentimentElement.textContent = sentiment;
-    sentimentElement.parentElement.classList.add(sentiment);
-    polarityElement.textContent = polarity;
+    sentimentElement.textContent = " " + sentiment;
+    sentimentElement.classList.add(sentiment);
+    polarityElement.textContent = " " + polarity;
     const polarityClass = (polarity > 0) ? "positive" : (polarity === 0) ? "neutral" : (polarity < 0) ? "negative" : "error"    
-    polarityElement.parentElement.classList.add(polarityClass)
+    polarityElement.classList.add(polarityClass)
 }
 
 async function getSentiment(text){
@@ -70,7 +73,7 @@ async function getSentimentResponse(text){
         headers: headers,
         body: JSON.stringify(body) //Stringify obj 
     }).catch(function(error){
-        console.log(error)
+        console.log("Error " + error)
     });
     return response; // parses JSON response into native JavaScript objects
 }
@@ -83,4 +86,13 @@ function handleCheckAgain(){
     resultAreaElement.classList.add('hide');
     userInputElement.classList.remove('hide');
     page.insertBefore(userInputElement, resultAreaElement);
+}
+
+function handleSecretCheckboxClick(event){
+    const loadingIMG = document.querySelector(".loading");
+    if(event.target.checked){
+        loadingIMG.src = "images\\loading2.gif"
+    }else{
+        loadingIMG.src = "images\\loading.gif"
+    }
 }

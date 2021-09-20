@@ -10,15 +10,18 @@
 </head>
 <body>
     <div id="page">
-        <h1>Sentimentor</h1>
+        <h1 style="margin-top: 5em; margin-bottom: 3em;">Sentimentor - I Can Predict Your Sentiment</h1>
+        <input class="betterload-checkbox" type="checkbox" value="">
         <div class="user-input">
             <textarea class="text-area" placeholder="What do you wish for me?"></textarea>
             <button button-id="1">Submit!</button>
         </div>
         <div class="loading-area hide"><img class = "loading" src="images\loading.gif"></div>
         <div class="results-area hide">
-            <p>Sentiment:<span class="sentiment"></span></p>
-            <p>Polarity:<span class="polarity"></span></p>
+            <div class="datadiv">
+                <p>Sentiment:<span class="sentiment"></span></p>
+                <p>Polarity:<span class="polarity"></span></p>
+            </div>
             <p style="display: grid;">HTTP Code<img class = "httpcode" src="https://bit.ly/2XwQxrz"></p>
             <button button-id="2">Check Again!</button>
         </div>

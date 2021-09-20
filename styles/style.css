@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 *{
     margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body{
@@ -8,6 +10,7 @@ body{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    background-color: #a8d6ff;
 }
 
 .user-input, .results-area{
@@ -19,20 +22,24 @@ body{
     width: 50%;
 }
 
+.results-area{
+    flex-direction: row;
+}
+
 .text-area{
     height: 10em;
 }
 
 .positive{
-    background-color: green;
+    color: green;
 }
 
 .negative, .error{
-    background-color: red;
+    color: red;
 }
 
 .neutral{
-    background-color: grey;
+    color: grey;
 }
 
 p{
@@ -52,4 +59,20 @@ p{
 .hide {
     opacity: 0;
     /* transition: opacity 0.6s linear; */
+}
+
+.datadiv{
+    display: flex;
+    flex-direction: column;
+}
+
+button, textarea{
+    background-color: #cde8ff;
+    margin-bottom: 1em;
+}
+
+.betterload-checkbox{
+    position: absolute;
+    top: 1em;
+    right: 1em;
 }
