@@ -69,6 +69,7 @@ p{
 button, textarea{
     background-color: #cde8ff;
     margin-bottom: 1em;
+    min-height: 64px;
 }
 
 .betterload-checkbox{
