@@ -12,13 +12,15 @@
     <div id="page">
         <h1>Sentimentor</h1>
         <div class="user-input">
-            <textarea class="text-area" placeholder="What do you think about gordon"></textarea>
-            <button>Submit!</button>
+            <textarea class="text-area" placeholder="What do you wish for me?"></textarea>
+            <button button-id="1">Submit!</button>
         </div>
-        <div class="results-area">
-            <p>Sentiment: <img class = "loading" src="images\loading.gif" hidden><span class="sentiment"></span></p>
-            <p>Polarity: <img class = "loading" src="images\loading.gif" hidden><span class="polarity"></span></p>
+        <div class="loading-area hide"><img class = "loading" src="images\loading.gif"></div>
+        <div class="results-area hide">
+            <p>Sentiment:<span class="sentiment"></span></p>
+            <p>Polarity:<span class="polarity"></span></p>
             <p style="display: grid;">HTTP Code<img class = "httpcode" src="https://bit.ly/2XwQxrz"></p>
+            <button button-id="2">Check Again!</button>
         </div>
     </div>
 </body>

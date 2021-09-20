@@ -1,40 +1,45 @@
 //Add event when clicking button
-const button = document.querySelector("button")
-button.addEventListener("click", handleSumbit);
+const submitButton = document.querySelector("button[button-id='1']");
+submitButton.addEventListener("click", handleSumbit);
+const checkAgainButton = document.querySelector("button[button-id='2']");
+checkAgainButton.addEventListener("click", handleCheckAgain);
 
 
 async function handleSumbit(event){
     //Get text and elements
+    const loadingElement = document.querySelector(".loading-area");
+    const userInputElement = document.querySelector('.user-input');
+    const resultAreaElement = document.querySelector('.results-area');
     const textArea = document.querySelector("textarea");
     const text = textArea.value;
-    const sentimentElement = document.querySelector(".sentiment")
-    const polarityElement = document.querySelector(".polarity")
+    const sentimentElement = document.querySelector(".sentiment");
+    const polarityElement = document.querySelector(".polarity");
     
     //Add loading effect and Clear prev Results
+    textArea.value = "";
     sentimentElement.parentElement.className = "";
     polarityElement.parentElement.className = "";
     sentimentElement.textContent = "";
     polarityElement.textContent = "";
-
-    sentimentElement.parentElement.querySelector(".loading").hidden = false;
-    polarityElement.parentElement.querySelector(".loading").hidden = false;
-    document.querySelector(".httpcode").src = "https://bit.ly/2XwQxrz"
+    
+    //Hide input Element and show loading-area
+    userInputElement.classList.add("hide");
+    loadingElement.classList.remove("hide");
+    page.insertBefore(loadingElement, userInputElement);
 
     //get sentiment and wait for response
     const {sentiment, polarity} = await getSentiment(text)
 
-    //display result
+    //display result and hide loading screen
+    loadingElement.classList.add('hide');
+    page.insertBefore(resultAreaElement, loadingElement);
+    resultAreaElement.classList.remove('hide') //Show results
+    
     sentimentElement.textContent = sentiment;
     sentimentElement.parentElement.classList.add(sentiment);
     polarityElement.textContent = polarity;
     const polarityClass = (polarity > 0) ? "positive" : (polarity === 0) ? "neutral" : (polarity < 0) ? "negative" : "error"    
     polarityElement.parentElement.classList.add(polarityClass)
-
-    //hidden loading gif
-    sentimentElement.parentElement.querySelector(".loading").hidden = true;
-    polarityElement.parentElement.querySelector(".loading").hidden = true;
-
-    
 }
 
 async function getSentiment(text){
@@ -68,4 +73,14 @@ async function getSentimentResponse(text){
         console.log(error)
     });
     return response; // parses JSON response into native JavaScript objects
+}
+
+function handleCheckAgain(){
+    const loadingElement = document.querySelector(".loading-area");
+    const userInputElement = document.querySelector('.user-input');
+    const resultAreaElement = document.querySelector('.results-area');
+
+    resultAreaElement.classList.add('hide');
+    userInputElement.classList.remove('hide');
+    page.insertBefore(userInputElement, resultAreaElement);
 }
