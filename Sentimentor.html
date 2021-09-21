@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <h1>Welcome to the sentimentor!</h1>
+    <h2>Submit your text to see if its positive or negetive!</h2>
+    <textarea id="input-area" placeholder="Enter your text!"></textarea><br>
+
+    <input type="button" class="btn-grad" id="submit" value="Submit"></input>
+    <br> <br>
+    <div id="loader" class="loader" style="display: none;">Loading...</div>
+
+    <div id="output" style="display:none;">
+        <p id="polarity" name="polarity"></p>
+        <p id="type" name="type"></p>
+        <p id="errorMsg" style="color: black;"></p>
+        <img id="cat">
+    </div>
+
+</body>
+
+</html>
