@@ -1,1 +1,208 @@
+<<<<<<< Updated upstream
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title> how do you feel today?</title>
+    <style>
+        body {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJvv6xXeA9GMS_1LaQRDMr9qGcoyw_JOKVgA&usqp=CAU");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #check {
+            outline: none;
+            display: block;
+            border: 0;
+            font-size: 16px;
+            line-height: 1;
+            padding: 16px 30px;
+            border-radius: 30px;
+            background: #0081D5;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s linear;
+        }
+
+        #check.hover,
+        #check.focus {
+            background: #005C99;
+        }
+
+        #check.active {
+            background: #003659;
+        }
+
+        #loader {
+            display: none;
+        }
+
+        .loader-wrapper {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #242f3f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 50%;
+            border: 4px solid #Fff;
+            animation: loader 2s infinite ease;
+        }
+
+        .loader-inner {
+            vertical-align: top;
+            display: inline-block;
+            width: 100%;
+            background-color: #fff;
+            animation: loader-inner 2s infinite ease-in;
+        }
+
+        @keyframes loader {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(180deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            75% {
+                transform: rotate(360deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loader-inner {
+            0% {
+                height: 0%;
+            }
+
+            25% {
+                height: 0%;
+            }
+
+            50% {
+                height: 100%;
+            }
+
+            75% {
+                height: 100%;
+            }
+
+            100% {
+                height: 0%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1 style="text-align:center;">your feelings</h1>
+        <h4 style="text-align:center;">in this page you would say how do you feel and the
+            page will tell you if you feel good or bad</h4>
+        <p> first,enter your name...</p>
+        <textarea id="enter-name" style="width:70%;max-width:100%; padding: 10px;" rows="1" class="text"
+            placeholder="please enter your name..."></textarea>
+        <p>and now enter how you feel...</p>
+        <textarea id="enter-feeling" style="width:70%;max-width:100%; padding: 10px;" rows="1" class="text"
+            placeholder="please enter your feelings..."></textarea>
+        <br>
+        <br>
+        <button id="check" style="padding:10px;"> click here to see...</button>
+        <div id="loader">
+            <div class="loader-wrapper">
+                <span class="loader"><span class="loader-inner"></span></span>
+            </div>
+        </div>
+        <div id="result"></div>
+        <br />
+        <img id="cat" style="display:none;width:400px;height:400px;" />
+    </main>
+    <script>
+
+        var check = document.getElementById("check");
+        var result = document.getElementById("result");
+        var loader = document.getElementById("loader");
+        var httpCat = document.getElementById("cat");
+        async function answer() {
+            loader.style.display = "block";
+            var userText = document.getElementById("enter-feeling").value;
+
+            const response = await fetch("https://sentim-api.herokuapp.com/api/v1/", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    text: userText
+                })
+            })
+
+            if (!response.ok) {
+                const text = await response.text()
+                loader.style.display = "none";
+                document.getElementById("result").innerHTML = text
+                return;
+            }
+            const status = await response.status;
+            loader.style.display = "none";
+            httpCat.src = "https://http.cat/" + status;
+            httpCat.style.display = "inline";
+            const outcome = await response.json(); 
+
+
+            if (status < 400) {
+                if (outcome.result.polarity > 0) {
+                    result.innerHTML = "<label style='color:green'>" + outcome.result.polarity +
+                        " " + outcome.result.type + "</label>";
+                }
+                else if (outcome.result.polarity < 0) {
+                    result.innerHTML = "<label style='color:red'>" + outcome.result.polarity +
+                        " " + outcome.result.type + "</label>";
+                }
+                else {
+                    result.innerHTML = "<label style='color:gray'>" + outcome.result.polarity +
+                        " " + outcome.result.type + "</label>";
+                }
+            }
+            else {
+                loader.style.display = "none";
+            }
+        }
+        check.addEventListener("click", answer);
+    </script>
+
+</body>
+
+</html>
+>>>>>>> Stashed changes
