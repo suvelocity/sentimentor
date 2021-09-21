@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="main-header">Sentimentor</h1>
+    <div id ="user-input">
+        <header id="instruction" class="header">Place a text and we'll calculate its sentimental polarity for you</header>
+        <input id="textarea" placeholder="You're text goes here...">
+        <div id="surround">
+        <button id="submit">Calculate polarity</button>
+        </div>
+    </div>
+    <div id="result">
+        <header id="result-header" class="header">Result: </header>
+        <p id="polarity" class="result-child">The polarity is: <br> </p>
+        <p id="type" class="result-child">The type is: <br> </p>
+    </div>
+    <div id="loading"></div>
+</body>
+</html>
