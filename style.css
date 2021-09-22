@@ -1,0 +1,31 @@
+.positive {
+  color: rgb(19, 235, 19);
+}
+
+.neutral {
+  color: gray;
+}
+
+.negative {
+  color: red;
+}
+
+.answer {
+  display: block;
+  font-size: large;
+  border: 20px ridge aqua;
+  margin-left: 35vw;
+  margin-right: 35vw;
+}
+
+body {
+  text-align: center;
+  background-color: black;
+}
+textarea {
+  width: 350px;
+  height: 200px;
+  padding: 10px;
+  border: 3px dashed indigo;
+  background-color: aliceblue;
+}
